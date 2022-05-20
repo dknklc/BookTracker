@@ -1,70 +1,238 @@
-# Getting Started with Create React App
+Name : Dekan KILIÇ
+Number : 2268886
+URL : https://reactapplication-rjdwu.mongodbstitch.com/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I have decided to use React.js for the frontend.I didn't put the add/delete book and user option to main page.Instead, I have created different links for these operations at the header because the view was not good with these on the home page.
+On the home page , I have used Swipper for slide show. At the bottom of the swipper, I have listed list of books that are available on my MongoDb.
 
-## Available Scripts
+#### Bonus #### 
+The only bonus can be about pagination. I didn't use direct pagination with navigation between pages.Instead , I have decided to use 'view more' button 
+to see more all books on the right top of book cards in the home page.
 
+---------------------------------------------------------------------------------------------------
 In the project directory, you can run:
 
+### `npm install`
+and then
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---------------------------------------------------------------------------------------------------
 
-### `npm test`
+exports = function(){
+  
+    var collection = context.services.get("mongodb-atlas").db("BookTracker").collection("Book");
+    return collection.findOne({isFriction : true});
+};
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> result: 
+{
+  "_id": {
+    "$oid": "628633dccf64a518231c9f4a"
+  },
+  "bookName": "Harry Potter ve Felsefe Taşı",
+  "author": "J.K. Rowling",
+  "translator": "Ülkü Tamer",
+  "editor": "Danny Richard",
+  "cover": "https://i.dr.com.tr/cache/500x400-0/originals/0000000105599-1.jpg",
+  "isFriction": true,
+  "publisher": "Yapı Kredi Yayınları",
+  "yearPublished": "2016",
+  "averageRatingOftheBook": "4.8",
+  "reviews": [
+    "This book is excellent.",
+    "This book is perfect."
+  ],
+  "img": "https://i.dr.com.tr/cache/500x400-0/originals/0000000105599-1.jpg",
+  "wallpaper": "https://images8.alphacoders.com/110/1102284.jpg",
+  "genres": [
+    "Classic",
+    "Novel",
+    "Polisiye",
+    "History",
+    "Comic"
+  ],
+  "description": "This book is about bla bla"
+}
 
-### `npm run build`
+---------------------------------------------------------------------------------------------------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+exports = function(){
+  
+    var collection = context.services.get("mongodb-atlas").db("BookTracker").collection("Book");
+    return collection.findOne({isFriction : false ,  author :{$size:2}});
+};
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> result: 
+{
+  "_id": {
+    "$oid": "6286341fcf64a518231c9f58"
+  },
+  "bookName": "Krallık",
+  "author": [
+    "Jo Nesbo",
+    "Dekan"
+  ],
+  "translator": "Ülkü Tamer",
+  "editor": "Danny Richard",
+  "cover": "https://i.dr.com.tr/cache/500x400-0/originals/0001938740001-1.jpg",
+  "isFriction": false,
+  "publisher": "Yapı Kredi Yayınları",
+  "yearPublished": "2016",
+  "averageRatingOftheBook": "4.8",
+  "reviews": [
+    "This book is excellent",
+    "Perfect book"
+  ],
+  "rating": {
+    "$numberDouble": "4.3"
+  },
+  "img": "https://i.dr.com.tr/cache/500x400-0/originals/0001938740001-1.jpg",
+  "wallpaper": "https://lh3.googleusercontent.com/-WA2Y0XePUVU/X8AmJkVRrBI/AAAAAAAAgBQ/v8E5wclY06Y9-CRrVjygTE7WA65XWtoGQCLcBGAsYHQ/s16000/Genshin-Impact-1.jpg",
+  "genres": [
+    "Classic",
+    "Novel",
+    "Polisiye",
+    "History",
+    "Comic"
+  ],
+  "description": "This book is about bla bla"
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---------------------------------------------------------------------------------------------------
 
-### `npm run eject`
+exports = function(){
+  
+    var collection = context.services.get("mongodb-atlas").db("BookTracker").collection("Book");
+    return collection.findOne({translator : {$exists:true}});
+};
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> result: 
+{
+  "_id": {
+    "$oid": "628633dccf64a518231c9f4a"
+  },
+  "bookName": "Harry Potter ve Felsefe Taşı",
+  "author": "J.K. Rowling",
+  "translator": "Ülkü Tamer",
+  "editor": "Danny Richard",
+  "cover": "https://i.dr.com.tr/cache/500x400-0/originals/0000000105599-1.jpg",
+  "isFriction": true,
+  "publisher": "Yapı Kredi Yayınları",
+  "yearPublished": "2016",
+  "averageRatingOftheBook": "4.8",
+  "reviews": [
+    "This book is excellent.",
+    "This book is perfect."
+  ],
+  "img": "https://i.dr.com.tr/cache/500x400-0/originals/0000000105599-1.jpg",
+  "wallpaper": "https://images8.alphacoders.com/110/1102284.jpg",
+  "genres": [
+    "Classic",
+    "Novel",
+    "Polisiye",
+    "History",
+    "Comic"
+  ],
+  "description": "This book is about bla bla"
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---------------------------------------------------------------------------------------------------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+exports = function(){
+  
+    var collection = context.services.get("mongodb-atlas").db("BookTracker").collection("Book");
+    return collection.findOne({editor : {$exists:true} ,  author :{$size:2}});
+};
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> result: 
+{
+  "_id": {
+    "$oid": "6286341fcf64a518231c9f58"
+  },
+  "bookName": "Krallık",
+  "author": [
+    "Jo Nesbo",
+    "Dekan"
+  ],
+  "translator": "Ülkü Tamer",
+  "editor": "Danny Richard",
+  "cover": "https://i.dr.com.tr/cache/500x400-0/originals/0001938740001-1.jpg",
+  "isFriction": false,
+  "publisher": "Yapı Kredi Yayınları",
+  "yearPublished": "2016",
+  "averageRatingOftheBook": "4.8",
+  "reviews": [
+    "This book is excellent",
+    "Perfect book"
+  ],
+  "rating": {
+    "$numberDouble": "4.3"
+  },
+  "img": "https://i.dr.com.tr/cache/500x400-0/originals/0001938740001-1.jpg",
+  "wallpaper": "https://lh3.googleusercontent.com/-WA2Y0XePUVU/X8AmJkVRrBI/AAAAAAAAgBQ/v8E5wclY06Y9-CRrVjygTE7WA65XWtoGQCLcBGAsYHQ/s16000/Genshin-Impact-1.jpg",
+  "genres": [
+    "Classic",
+    "Novel",
+    "Polisiye",
+    "History",
+    "Comic"
+  ],
+  "description": "This book is about bla bla"
+}
 
-## Learn More
+---------------------------------------------------------------------------------------------------
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+exports = function(){
+  
+    var collection = context.services.get("mongodb-atlas").db("BookTracker").collection("User");
+    return collection.findOne({_id : {$exists:true}});
+};
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> result: 
+{
+  "_id": {
+    "$oid": "62865376cf64a518231c9f5b"
+  },
+  "username": "Dekan",
+  "numberOfBooksRead": {
+    "$numberInt": "2"
+  },
+  "favoriteBooks": [
+    {
+      "$numberInt": "0"
+    }
+  ],
+  "averageRating": {
+    "$numberDouble": "4.5"
+  },
+  "reviews": [
+    {
+      "book_id": {
+        "$numberInt": "0"
+      },
+      "rating": {
+        "$numberInt": "5"
+      },
+      "review_text": "It was very good to read this book"
+    },
+    {
+      "book_id": {
+        "$numberInt": "1"
+      },
+      "rating": {
+        "$numberInt": "4"
+      },
+      "review_text": "I am very appreciated"
+    }
+  ]
+}
 
-### Code Splitting
+---------------------------------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
