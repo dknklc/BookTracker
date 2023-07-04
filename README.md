@@ -1,5 +1,4 @@
 Name : Dekan KILIÇ
-Number : 2268886
 URL : https://reactapplication-rjdwu.mongodbstitch.com/
 
 I have decided to use React.js for the frontend.I didn't put the add/delete book and user option to main page.Instead, I have created different links for these operations at the header because the view was not good with these on the home page.
